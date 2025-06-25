@@ -1,48 +1,52 @@
 // src/App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { fetchPokemonRange } from './components/fetchpokemon';
+import { fetchPokemonRange, fetchAllTypes } from './components/fetchpokemon';
 import PokemonCard from './components/pokemoncard';
+import TypeCard from './components/pokemontypecards';
 
 function App() {
-  // ─── State ────────────────────────────────────────────────
-  // Holds our array of {id,name,types,image}
   const [pokemonList, setPokemonList] = useState([]);
-  // Loading flag for the initial fetch
-  const [loading, setLoading]       = useState(true);
-  // Error message if something goes wrong
-  const [error, setError]           = useState(null);
+  const [types, setTypes] = useState([]);
+  const [filterText, setFilterText] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // ─── Effect: run once on mount ────────────────────────────
   useEffect(() => {
-    fetchPokemonRange(1, 151)
-      .then(data => {
-        setPokemonList(data);      // store array of 151 Pokémon
-        setLoading(false);         // hide loading state
+    setLoading(true);
+    setError(null);
+    Promise.all([fetchPokemonRange(1, 151), fetchAllTypes()])
+      .then(([pokemons, typeData]) => {
+        setPokemonList(pokemons);
+        setTypes(typeData);
       })
-      .catch(err => {
-        console.error(err);
-        setError('Could not load Pokémon.');
-        setLoading(false);
-      });
+      .catch(err => setError(err.message || 'Something went wrong'))
+      .finally(() => setLoading(false));
   }, []);
 
-  // Conditional render
-  if (loading) return <p>Loading 151 Pokémon…</p>;
-  if (error)   return <p style={{ color: 'salmon' }}>Error: {error}</p>;
+  if (loading) return <p>Loading Pokémon & types…</p>;
+  if (error) return <p style={{ color: 'salmon' }}>Error: {error}</p>;
 
-  // Main UI
+  const filteredList = pokemonList.filter(p =>
+    p.name.toLowerCase().includes(filterText.toLowerCase())
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        Fearless Pokémon Nuzlocke
-      </header>
-
+      <header className="App-header">Fearless Pokémon Nuzlocke</header>
+      <div className="type-grid">
+        {types.map(t => <TypeCard key={t.id} {...t} />)}
+      </div>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search by name…"
+          value={filterText}
+          onChange={e => setFilterText(e.target.value)}
+        />
+      </div>
       <div className="pokemon-grid">
-        {pokemonList.map(p => (
-          // Spread our object as props: id, name, types, image
-          <PokemonCard key={p.id} {...p} />
-        ))}
+        {filteredList.map(p => <PokemonCard key={p.id} {...p} />)}
       </div>
     </div>
   );
