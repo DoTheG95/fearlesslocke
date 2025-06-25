@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+/* Pokemon card */
+.pokemon-card {
+  background-color: #282c34;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: transform .2s ease;
+}
+.pokemon-card:hover {
+  transform: translateY(-4px);
+}
+
+.pokemon-image {
+  display: block;
+  margin: 0 auto 0.5rem;
+}
+
+.pokemon-name {
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.pokemon-types {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.pokemon-grid {
+  background-color: #282c34;
+  display: grid;  
+  /* 9 columns of equal width across the container */
+  grid-template-columns: repeat(9, 1fr);
+  gap: 1rem;       /* space between cards */
+  padding: 2rem;   /* outer spacing */
+}
