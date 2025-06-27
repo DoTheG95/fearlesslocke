@@ -25,24 +25,46 @@ export function fetchPokemonById(id) {
 }
 
 
-export function fetchPokemonRange(startId = 1, endId = 151) {
+export async function fetchPokemonRange(startId = 1, endId = 151, batchSize = 50) {
+  // 1. Clamp endId to the real count
+  const info = await fetch(`${API_BASE}pokemon?limit=1`);
+  if (!info.ok) throw new Error('Could not fetch Pokémon count');
+  const { count } = await info.json();
+  const finalEnd = Math.min(endId, count);
+
+  // 2. Build the list of IDs
   const ids = Array.from(
-    { length: endId - startId + 1 },
+    { length: finalEnd - startId + 1 },
     (_, i) => startId + i
   );
 
-  // Kick off one fetch per ID
-  const promises = ids.map(id =>
-    fetchPokemonById(id)
-      .then(data => ({
-        id:    data.id,
-        name:  data.name,
-        types: data.types.map(t => t.type.name),
-        image: data.sprites.front_default,
-      }))
-  );
+  const results = [];
 
-  return Promise.all(promises);
+  // 3. Process in batches
+  for (let i = 0; i < ids.length; i += batchSize) {
+    const batchIds = ids.slice(i, i + batchSize);
+    // Kick off batchSize parallel fetches
+    const batchResults = await Promise.all(
+      batchIds.map(id =>
+        fetchPokemonById(id)
+          .then(data => ({
+            id:    data.id,
+            name:  data.name,
+            types: data.types.map(t => t.type.name),
+            image: data.sprites.front_default,
+          }))
+          .catch(err => {
+            console.warn(err.message);
+            return null; // skip one if it fails
+          })
+      )
+    );
+    // Append only the successful ones
+    results.push(...batchResults.filter(x => x));
+    // (Optional) tiny delay between batches to be extra-polite
+    // await new Promise(r => setTimeout(r, 100));
+  }
+  return results;
 }
 
 export function fetchAllTypes() {
@@ -57,4 +79,9 @@ export function fetchAllTypes() {
   );
 
   return Promise.all(promises);
+}
+
+
+export function fetchByPokedex() {
+
 }

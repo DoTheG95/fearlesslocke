@@ -9,13 +9,23 @@ function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [types, setTypes] = useState([]);
   const [filterText, setFilterText] = useState('');
+  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [greyedPokemon, setGreyedPokemon] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const handleCardClick = id => {
+    setGreyedPokemon(prev =>
+      prev.includes(id)
+        ? prev.filter(x => x !== id)
+        : [...prev, id]
+    );
+  };
 
   useEffect(() => {
     setLoading(true);
     setError(null);
-    Promise.all([fetchPokemonRange(1, 151), fetchAllTypes()])
+    Promise.all([fetchPokemonRange(1, 1025, 200), fetchAllTypes()])
       .then(([pokemons, typeData]) => {
         setPokemonList(pokemons);
         setTypes(typeData);
@@ -27,15 +37,45 @@ function App() {
   if (loading) return <p>Loading Pokémon & types…</p>;
   if (error) return <p style={{ color: 'salmon' }}>Error: {error}</p>;
 
-  const filteredList = pokemonList.filter(p =>
-    p.name.toLowerCase().includes(filterText.toLowerCase())
-  );
+  function handleTypeClick(typeName) {
+    setSelectedTypes(prev => {
+      if (prev.includes(typeName)) {
+        // deselect if already active
+        return prev.filter(t => t !== typeName);
+      }
+      if (prev.length < 2) {
+        // add if room
+        return [...prev, typeName];
+      }
+      // drop oldest, keep newest two
+      return [prev[1], typeName];
+    });
+  }
+
+  const filteredList = pokemonList.filter(pokemon => {
+    // name filter (case-insensitive)
+    const matchesName = pokemon.name
+      .toLowerCase()
+      .includes(filterText.toLowerCase());
+  
+    // type filter: require *all* selectedTypes to be present
+    const matchesTypes = selectedTypes.every(type =>
+      pokemon.types.includes(type)
+    );
+  
+    return matchesName && matchesTypes;
+  });
 
   return (
     <div className="App">
       <header className="App-header">Fearless Pokémon Nuzlocke</header>
       <div className="type-grid">
-        {types.map(t => <TypeCard key={t.id} {...t} />)}
+        {types.map(t => <TypeCard
+            key={t.id}
+            {...t}
+            active={selectedTypes.includes(t.name)}
+            onClick={() => handleTypeClick(t.name)}
+          />)}
       </div>
       <div className="search-container">
         <input
@@ -46,7 +86,11 @@ function App() {
         />
       </div>
       <div className="pokemon-grid">
-        {filteredList.map(p => <PokemonCard key={p.id} {...p} />)}
+        {filteredList.map(p => <PokemonCard key={p.id}
+            {...p}
+            active={greyedPokemon.includes(p.id)}
+            onClick={() => handleCardClick(p.id)}/>
+          )}
       </div>
     </div>
   );
