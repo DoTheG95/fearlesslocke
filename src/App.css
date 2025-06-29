@@ -77,8 +77,7 @@
 }
 
 .type-grid {
-  display: grid;  
-  /* 9 columns of equal width across the container */
+  display: grid;
   grid-template-columns: repeat(9, 1fr);
   gap: 1rem;       /* space between cards */
   padding: 2rem;   /* outer spacing */
@@ -108,4 +107,46 @@
   margin: 0;
   font-weight: bold;
   text-transform: capitalize;
+}
+
+.icon-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.icon-row .icon {
+  width: 100px;      /* or whatever size you prefer */
+  height: 100px;
+}
+
+.icon-container {
+  position: relative;
+  text-align: center;
+}
+
+.game-popup {
+  position: absolute;
+  bottom: 130%;               /* right under the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.game-icon {
+  width: 32px;
+  height: 32px;
+  cursor: default;
+  border: 1px solid #999;
 }

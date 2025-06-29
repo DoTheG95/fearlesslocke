@@ -25,14 +25,14 @@ export function fetchPokemonById(id) {
 }
 
 
-export async function fetchPokemonRange(startId = 1, endId = 151, batchSize = 50) {
-  // 1. Clamp endId to the real count
+export async function fetchPokemonRange(startId = 1, endId = 151, batchSize = 100) {
+  // Clamp endId to the real count
   const info = await fetch(`${API_BASE}pokemon?limit=1`);
   if (!info.ok) throw new Error('Could not fetch Pokémon count');
   const { count } = await info.json();
   const finalEnd = Math.min(endId, count);
 
-  // 2. Build the list of IDs
+  // Build the list of IDs
   const ids = Array.from(
     { length: finalEnd - startId + 1 },
     (_, i) => startId + i
@@ -40,7 +40,7 @@ export async function fetchPokemonRange(startId = 1, endId = 151, batchSize = 50
 
   const results = [];
 
-  // 3. Process in batches
+  // Process in batches
   for (let i = 0; i < ids.length; i += batchSize) {
     const batchIds = ids.slice(i, i + batchSize);
     // Kick off batchSize parallel fetches
@@ -61,8 +61,6 @@ export async function fetchPokemonRange(startId = 1, endId = 151, batchSize = 50
     );
     // Append only the successful ones
     results.push(...batchResults.filter(x => x));
-    // (Optional) tiny delay between batches to be extra-polite
-    // await new Promise(r => setTimeout(r, 100));
   }
   return results;
 }
@@ -77,7 +75,6 @@ export function fetchAllTypes() {
       icon: data.sprites['generation-viii']['sword-shield'].name_icon,
     }))
   );
-
   return Promise.all(promises);
 }
 
