@@ -130,16 +130,18 @@
 
 .game-popup {
   position: absolute;
-  bottom: 130%;               /* right under the icon */
+  bottom: 130%;
   left: 50%;
   transform: translateX(-50%);
   background: white;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  grid-template-columns: repeat(4, auto);
   gap: 0.5rem;
+  justify-items: center;
+  align-items: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   z-index: 10;
 }
@@ -147,6 +149,14 @@
 .game-icon {
   width: 32px;
   height: 32px;
-  cursor: default;
-  border: 1px solid #999;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 2px;
+  background: #fff;
+}
+
+.game-popup-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
 }
