@@ -6,7 +6,7 @@ import '../App.css';
 const consoles = [
   { name: 'GBC', key: 'gbc', iconSrc: '/images/consoles/game-boy.png' },
   { name: 'GBA', key: 'gba', iconSrc: '/images/consoles/gba.png' },
-  { name: 'Nintendo DS',  key: 'nds', iconSrc: '/images/consoles/nintendo-ds.png' },
+  { name: 'Nintendo DS', key: 'nds', iconSrc: '/images/consoles/nintendo-ds.png' },
   { name: 'Nintendo 3DS', key: 'tds', iconSrc: '/images/consoles/3ds.png' },
   { name: 'Switch', key: 'switch', iconSrc: '/images/consoles/nintendo-switch.png' }
 ];
