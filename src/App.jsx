@@ -9,17 +9,7 @@ import DexSelector from './components/DexSelector';
 import SearchBar from './components/SearchBar';
 import PokemonGrid from './components/PokemonGrid';
 
-const dexOptions = [
-  { id: '1', name: 'National' },
-  { id: '2', name: 'Kanto' },
-  { id: '3', name: 'Johto' },
-  { id: '4', name: 'Hoenn' },
-  { id: '5', name: 'Sinnoh' },
-  { id: '6', name: 'Unova' },
-  { id: '12', name: 'Alola' },
-  { id: '27', name: 'Galar' },
-  { id: '31', name: 'Paldea' }
-];
+const API_BASE = process.env.REACT_APP_POKEMON_API_URL;
 
 function App() {
   const [pokemonList, setPokemonList] = useState([]);
@@ -38,7 +28,7 @@ function App() {
     try {
       localStorage.setItem('greyedPokemon', JSON.stringify(greyedPokemon));
     } catch {
-      // ignore quota errors
+      // ignore
     }
   }, [greyedPokemon]);
 
@@ -54,11 +44,41 @@ function App() {
       .finally(() => setLoading(false));
   }, [selectedDex]);
 
-  const handleCardClick = id => {
-    setGreyedPokemon(prev =>
-      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
-    );
-  };
+  function collectSpeciesNames(chain) {
+    let names = [chain.species.name];
+    chain.evolves_to.forEach(child => {
+      names = names.concat(collectSpeciesNames(child));
+    });
+    return names;
+  }
+
+  async function handleCardClick(id, name) {
+    // fetch evolution chain
+    let speciesNames = [];
+    try {
+      const sp = await fetch(`${API_BASE}pokemon-species/${name}`);
+      if (!sp.ok) throw new Error('species fetch failed');
+      const spData = await sp.json();
+      const ch = await fetch(spData.evolution_chain.url);
+      if (!ch.ok) throw new Error('chain fetch failed');
+      const chData = await ch.json();
+      speciesNames = collectSpeciesNames(chData.chain);
+    } catch (err) {
+      console.error(err);
+    }
+    // determine chain IDs
+    const chainIds = pokemonList
+      .filter(p => speciesNames.includes(p.name))
+      .map(p => p.id);
+    // toggle greying for whole chain
+    setGreyedPokemon(prev => {
+      const isGreyed = prev.includes(id);
+      if (isGreyed) {
+        return prev.filter(x => !chainIds.includes(x));
+      }
+      return Array.from(new Set([...prev, ...chainIds]));
+    });
+  }
 
   const handleTypeClick = typeName => {
     setSelectedTypes(prev => {
@@ -86,11 +106,25 @@ function App() {
   if (error) return <p style={{ color: 'salmon' }}>Error: {error}</p>;
 
   return (
-    <div className="App">
-      <Header title="Fearless Pokémon Nuzlocke" />
+    <div className='App'>
+      <Header title='Fearless Pokémon Nuzlocke' />
       <ConsoleRow onSelectDex={setSelectedDex} />
       <TypeGrid types={types} selectedTypes={selectedTypes} onTypeClick={handleTypeClick} />
-      <DexSelector options={dexOptions} value={selectedDex} onChange={setSelectedDex} />
+      <DexSelector
+        options={[
+          { id: '1', name: 'National' },
+          { id: '2', name: 'Kanto' },
+          { id: '3', name: 'Johto' },
+          { id: '4', name: 'Hoenn' },
+          { id: '5', name: 'Sinnoh' },
+          { id: '6', name: 'Unova' },
+          { id: '12', name: 'Alola' },
+          { id: '27', name: 'Galar' },
+          { id: '31', name: 'Paldea' }
+        ]}
+        value={selectedDex}
+        onChange={setSelectedDex}
+      />
       <SearchBar
         value={filterText}
         onChange={setFilterText}

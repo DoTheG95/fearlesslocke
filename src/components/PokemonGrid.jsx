@@ -1,4 +1,3 @@
-// src/components/PokemonGrid.jsx
 import React from 'react';
 import PropTypes from 'prop-types';
 import PokemonCard from './PokemonCard';
@@ -16,7 +15,7 @@ export default function PokemonGrid({
           key={p.id}
           {...p}
           active={greyedPokemon.includes(p.id)}
-          onClick={() => onCardClick(p.id)}
+          onClick={() => onCardClick(p.id, p.name)}
         />
       ))}
     </div>
@@ -24,7 +23,7 @@ export default function PokemonGrid({
 }
 
 PokemonGrid.propTypes = {
-  pokemonList: PropTypes.array.isRequired,
+  pokemonList:   PropTypes.array.isRequired,
   greyedPokemon: PropTypes.array.isRequired,
-  onCardClick: PropTypes.func.isRequired
+  onCardClick:   PropTypes.func.isRequired
 };
