@@ -107,7 +107,7 @@ function App() {
 
   return (
     <div className='App'>
-      <Header title='Fearless Pokémon Nuzlocke' />
+      <Header   />
       <ConsoleRow onSelectDex={setSelectedDex} />
       <TypeGrid types={types} selectedTypes={selectedTypes} onTypeClick={handleTypeClick} />
       <DexSelector
