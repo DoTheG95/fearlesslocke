@@ -22,7 +22,7 @@ export function fetchAllTypes() {
 
 
 export async function fetchPokedex(id, batchSize = 100) {
-  const res = await fetch(`${API_BASE}pokedex/${id}`);
+  let res = await fetch(`${API_BASE}pokedex/${id}`);
   if (!res.ok) throw new Error(`Pokedex ${id} failed: ${res.status}`);
   const { pokemon_entries } = await res.json();
   const speciesUrls = pokemon_entries.map(e => e.pokemon_species.url);

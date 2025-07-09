@@ -1,143 +1,20 @@
-// src/App.js
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { fetchPokedex, fetchAllTypes } from './components/FetchPokemon';
+import React from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
-import ConsoleRow from './components/ConsoleRow';
-import TypeGrid from './components/TypeGrid';
-import DexSelector from './components/DexSelector';
-import SearchBar from './components/SearchBar';
-import PokemonGrid from './components/PokemonGrid';
-
-const API_BASE = process.env.REACT_APP_POKEMON_API_URL;
+import Rules from './pages/Rules';
 
 function App() {
-  const [pokemonList, setPokemonList] = useState([]);
-  const [types, setTypes] = useState([]);
-  const [filterText, setFilterText] = useState('');
-  const [selectedTypes, setSelectedTypes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [selectedDex, setSelectedDex] = useState('1');
-  const [greyedPokemon, setGreyedPokemon] = useState(() => {
-    const saved = localStorage.getItem('greyedPokemon');
-    return saved ? JSON.parse(saved) : [];
-  });
 
-  useEffect(() => {
-    try {
-      localStorage.setItem('greyedPokemon', JSON.stringify(greyedPokemon));
-    } catch {
-      // ignore
-    }
-  }, [greyedPokemon]);
+   const { pathname } = (useLocation() === '/');
 
-  useEffect(() => {
-    setLoading(true);
-    setError(null);
-    Promise.all([fetchPokedex(selectedDex), fetchAllTypes()])
-      .then(([pokes, typeData]) => {
-        setPokemonList(pokes);
-        setTypes(typeData);
-      })
-      .catch(err => setError(err.message))
-      .finally(() => setLoading(false));
-  }, [selectedDex]);
-
-  function collectSpeciesNames(chain) {
-    let names = [chain.species.name];
-    chain.evolves_to.forEach(child => {
-      names = names.concat(collectSpeciesNames(child));
-    });
-    return names;
-  }
-
-  async function handleCardClick(id, name) {
-    // fetch evolution chain
-    let speciesNames = [];
-    try {
-      const sp = await fetch(`${API_BASE}pokemon-species/${name}`);
-      if (!sp.ok) throw new Error('species fetch failed');
-      const spData = await sp.json();
-      const ch = await fetch(spData.evolution_chain.url);
-      if (!ch.ok) throw new Error('chain fetch failed');
-      const chData = await ch.json();
-      speciesNames = collectSpeciesNames(chData.chain);
-    } catch (err) {
-      console.error(err);
-    }
-    // determine chain IDs
-    const chainIds = pokemonList
-      .filter(p => speciesNames.includes(p.name))
-      .map(p => p.id);
-    // toggle greying for whole chain
-    setGreyedPokemon(prev => {
-      const isGreyed = prev.includes(id);
-      if (isGreyed) {
-        return prev.filter(x => !chainIds.includes(x));
-      }
-      return Array.from(new Set([...prev, ...chainIds]));
-    });
-  }
-
-  const handleTypeClick = typeName => {
-    setSelectedTypes(prev => {
-      if (prev.includes(typeName)) return prev.filter(t => t !== typeName);
-      if (prev.length < 2) return [...prev, typeName];
-      return [prev[1], typeName];
-    });
-  };
-
-  const filteredList = pokemonList.filter(p =>
-    p.name.toLowerCase().includes(filterText.toLowerCase()) &&
-    selectedTypes.every(t => p.types.includes(t))
-  );
-
-  const handleResetFilters = () => {
-    setFilterText('');
-    setSelectedTypes([]);
-  };
-
-  const handleResetGreyed = () => {
-    setGreyedPokemon([]);
-  };
-
-  if (loading) return <p>Loading Pokémon & types…</p>;
-  if (error) return <p style={{ color: 'salmon' }}>Error: {error}</p>;
-
-  return (
-    <div className='App'>
-      <Header   />
-      <ConsoleRow onSelectDex={setSelectedDex} />
-      <TypeGrid types={types} selectedTypes={selectedTypes} onTypeClick={handleTypeClick} />
-      <DexSelector
-        options={[
-          { id: '1', name: 'National' },
-          { id: '2', name: 'Kanto' },
-          { id: '3', name: 'Johto' },
-          { id: '4', name: 'Hoenn' },
-          { id: '5', name: 'Sinnoh' },
-          { id: '6', name: 'Unova' },
-          { id: '12', name: 'Alola' },
-          { id: '27', name: 'Galar' },
-          { id: '31', name: 'Paldea' }
-        ]}
-        value={selectedDex}
-        onChange={setSelectedDex}
-      />
-      <SearchBar
-        value={filterText}
-        onChange={setFilterText}
-        onResetFilters={handleResetFilters}
-        onResetGreyed={handleResetGreyed}
-      />
-      <PokemonGrid
-        pokemonList={filteredList}
-        greyedPokemon={greyedPokemon}
-        onCardClick={handleCardClick}
-      />
-    </div>
-  );
+   return (
+      <div className='App'>
+         {pathname && <Header />}
+         <Routes>
+         <Route path="/rules" element={<Rules />} />
+         </Routes>
+      </div>
+   );
 }
 
 export default App;
