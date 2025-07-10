@@ -1,4 +1,3 @@
-import React from 'react';
 import '../App.css';
 
 export default function Header() {
@@ -31,7 +30,7 @@ export default function Header() {
           type="button"
           style={buttonStyle}
           onClick={() => {
-            window.location.href = '/proceed';
+            window.location.href = '/LoginForm';
           }}
         >
           Proceed

@@ -11,7 +11,7 @@ import PokemonGrid from './components/PokemonGrid';
 
 const API_BASE = process.env.REACT_APP_POKEMON_API_URL;
 
-function App() {
+function MainScreen() {
   const [pokemonList, setPokemonList] = useState([]);
   const [types, setTypes] = useState([]);
   const [filterText, setFilterText] = useState('');
@@ -141,4 +141,4 @@ function App() {
   );
 }
 
-export default App;
+export default MainScreen;
