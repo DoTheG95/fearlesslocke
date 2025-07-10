@@ -4,7 +4,7 @@ export default function Rules() {
 
   return (
     <div class="App">
-         <h1>Welcome to the Fearless Nuzlocke Challenge</h1>
+         <header className="App-header"> Welcome to the Fearless Nuzlocke Challenge</header>
          <p>
             This challenge is inspired by the fan-favourite rule set <em>Nuzlocke</em><br />
             with a spin from League of Legends' <em>Fearless Draft</em> system.
