@@ -4,12 +4,11 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Header from './pages/Landingpage';
+import Landingpage from './pages/Landingpage';
 import Rules from './pages/Rules';
 import Login from './pages/Login';
 import MainScreen from './pages/Mainscreen';
 import ProtectedRoute from './components/ProtectedRoute';
-import Navigationbar from './pages/Navigationbar';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,7 +17,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
-          <Route index element={<Header />} />
+          <Route index element={<Landingpage />} />
           <Route path='rules' element={<Rules />} />
           <Route path='login' element={<Login />} />
           <Route
