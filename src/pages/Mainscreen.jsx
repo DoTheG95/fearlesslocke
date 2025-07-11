@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import { fetchPokedex, fetchAllTypes } from '../components/FetchPokemon';
-import Navigationbar from './Navigationbar';
 import ConsoleRow from '../components/ConsoleRow';
 import TypeGrid from '../components/TypeGrid';
 import DexSelector from '../components/DexSelector';
@@ -112,7 +111,6 @@ function MainScreen() {
 
   return (
     <div className="App">
-      < Navigationbar />
       <ConsoleRow onSelectDex={setSelectedDex} />
       <TypeGrid types={types} selectedTypes={selectedTypes} onTypeClick={handleTypeClick} />
       <DexSelector

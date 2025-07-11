@@ -208,3 +208,18 @@
   gap: 0.5rem;
   justify-content: center;
 }
+
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
