@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 import { auth } from '../firebase';
 import {
@@ -7,7 +7,7 @@ import {
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginForm() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [newUser, setNewUser] = useState(false);
@@ -62,11 +62,19 @@ export default function LoginForm() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      navigate('../Mainscreen');
+      navigate('../pages/Mainscreen');
     } catch (err) {
       setErrorMsg(err.message);
     }
   };
+
+  useEffect(() => {
+    const loginbutton = document.getElementById('nav-login')
+    if (loginbutton) loginbutton.classList.add('hidden')
+    return () => {
+      if (loginbutton) loginbutton.classList.remove('hidden')
+    }
+  }, []);
 
   return (
     <header className="App-header" style={headerStyle}>

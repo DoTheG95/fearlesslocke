@@ -1,6 +1,14 @@
-import React from 'react';
+import React,  { useEffect } from 'react';
 
 export default function Rules() {
+
+   useEffect(() => {
+      const loginbutton = document.getElementById('nav-rules')
+      if (loginbutton) loginbutton.classList.add('hidden')
+      return () => {
+      if (loginbutton) loginbutton.classList.remove('hidden')
+      }
+   }, []);
 
   return (
     <div class="App">

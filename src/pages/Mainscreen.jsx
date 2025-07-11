@@ -1,13 +1,12 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import { fetchPokedex, fetchAllTypes } from './components/FetchPokemon';
-import Header from './components/Header';
-import ConsoleRow from './components/ConsoleRow';
-import TypeGrid from './components/TypeGrid';
-import DexSelector from './components/DexSelector';
-import SearchBar from './components/SearchBar';
-import PokemonGrid from './components/PokemonGrid';
+import '../App.css';
+import { fetchPokedex, fetchAllTypes } from '../components/FetchPokemon';
+import Navigationbar from './Navigationbar';
+import ConsoleRow from '../components/ConsoleRow';
+import TypeGrid from '../components/TypeGrid';
+import DexSelector from '../components/DexSelector';
+import SearchBar from '../components/SearchBar';
+import PokemonGrid from '../components/PokemonGrid';
 
 const API_BASE = process.env.REACT_APP_POKEMON_API_URL;
 
@@ -23,6 +22,7 @@ function MainScreen() {
     const saved = localStorage.getItem('greyedPokemon');
     return saved ? JSON.parse(saved) : [];
   });
+  const [monolocke, setMonolocke] = useState(false);
 
   useEffect(() => {
     try {
@@ -44,6 +44,13 @@ function MainScreen() {
       .finally(() => setLoading(false));
   }, [selectedDex]);
 
+  // when monolocke toggles on, ensure only one type remains selected
+  useEffect(() => {
+    if (monolocke && selectedTypes.length > 1) {
+      setSelectedTypes([selectedTypes[0]]);
+    }
+  }, [monolocke]);
+
   function collectSpeciesNames(chain) {
     let names = [chain.species.name];
     chain.evolves_to.forEach(child => {
@@ -53,7 +60,6 @@ function MainScreen() {
   }
 
   async function handleCardClick(id, name) {
-    // fetch evolution chain
     let speciesNames = [];
     try {
       const sp = await fetch(`${API_BASE}pokemon-species/${name}`);
@@ -66,11 +72,9 @@ function MainScreen() {
     } catch (err) {
       console.error(err);
     }
-    // determine chain IDs
     const chainIds = pokemonList
       .filter(p => speciesNames.includes(p.name))
       .map(p => p.id);
-    // toggle greying for whole chain
     setGreyedPokemon(prev => {
       const isGreyed = prev.includes(id);
       if (isGreyed) {
@@ -83,6 +87,7 @@ function MainScreen() {
   const handleTypeClick = typeName => {
     setSelectedTypes(prev => {
       if (prev.includes(typeName)) return prev.filter(t => t !== typeName);
+      if (monolocke) return [typeName];
       if (prev.length < 2) return [...prev, typeName];
       return [prev[1], typeName];
     });
@@ -106,8 +111,8 @@ function MainScreen() {
   if (error) return <p style={{ color: 'salmon' }}>Error: {error}</p>;
 
   return (
-    <div className='App'>
-      <Header   />
+    <div className="App">
+      < Navigationbar />
       <ConsoleRow onSelectDex={setSelectedDex} />
       <TypeGrid types={types} selectedTypes={selectedTypes} onTypeClick={handleTypeClick} />
       <DexSelector
@@ -118,7 +123,7 @@ function MainScreen() {
           { id: '15', name: 'Hoenn' },
           { id: '6', name: 'Sinnoh' },
           { id: '9', name: 'Unova' },
-          { id: '12', name: 'Kalos'},
+          { id: '12', name: 'Kalos' },
           { id: '21', name: 'Alola' },
           { id: '27', name: 'Galar' },
           { id: '31', name: 'Paldea' }
@@ -126,12 +131,23 @@ function MainScreen() {
         value={selectedDex}
         onChange={setSelectedDex}
       />
-      <SearchBar
-        value={filterText}
-        onChange={setFilterText}
-        onResetFilters={handleResetFilters}
-        onResetGreyed={handleResetGreyed}
-      />
+      <div style={{ display: 'flex', alignItems: 'center', margin: '1rem 0' }}>
+        <SearchBar
+          value={filterText}
+          onChange={setFilterText}
+          onResetFilters={handleResetFilters}
+          onResetGreyed={handleResetGreyed}
+        />
+        <label style={{ marginLeft: '1rem', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+          <input
+            type="checkbox"
+            checked={monolocke}
+            onChange={() => setMonolocke(!monolocke)}
+            style={{ marginRight: '0.5rem' }}
+          />
+          Toggle Monolocke
+        </label>
+      </div>
       <PokemonGrid
         pokemonList={filteredList}
         greyedPokemon={greyedPokemon}
