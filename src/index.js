@@ -18,8 +18,8 @@ root.render(
       <Routes>
         <Route path='/' element={<App />}>
           <Route index element={<Landingpage />} />
-          <Route path='rules' element={<Rules />} />
-          <Route path='login' element={<Login />} />
+          <Route path='Rules' element={<Rules />} />
+          <Route path='Login' element={<Login />} />
           <Route
             path='Mainscreen'
             element={
