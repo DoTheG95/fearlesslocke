@@ -45,8 +45,12 @@ function MainScreen() {
 
   // when monolocke toggles on, ensure only one type remains selected
   useEffect(() => {
-    if (monolocke && selectedTypes.length > 1) {
-      setSelectedTypes([selectedTypes[0]]);
+    if (monolocke) {
+      setSelectedTypes(prev =>
+        prev.length > 1
+          ? [prev[0]]
+          : prev
+      );
     }
   }, [monolocke]);
 

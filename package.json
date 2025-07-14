@@ -2,7 +2,7 @@
   "name": "fearlesslocke",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://DoTheG95.github.io/fearlesslocke/",
+  "homepage": "http://fearlesslocke.xyz/",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
