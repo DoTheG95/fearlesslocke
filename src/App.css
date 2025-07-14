@@ -209,16 +209,17 @@
   justify-content: center;
 }
 
-.password-wrapper {
-  position: relative;
+.input-wrapper {
+  display: flex;
+  align-items: center;
   width: 100%;
 }
-
+.input-wrapper input {
+  flex: 1;
+  padding-right: 1rem;
+}
 .toggle-icon {
-  position: absolute;
-  right: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-left: -2rem;
   width: 24px;
   height: 24px;
   cursor: pointer;

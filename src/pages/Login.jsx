@@ -1,3 +1,4 @@
+// src/components/Login.jsx
 import React, { useState, useEffect } from 'react';
 import '../App.css';
 import { auth } from '../firebase';
@@ -91,16 +92,20 @@ export default function Login() {
         <p style={{ color: 'red', marginTop: '1rem' }}>{errorMsg}</p>
       )}
       <form onSubmit={handleSubmit} style={formStyle}>
-        <input
-          type='email'
-          placeholder='Email'
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-          style={inputStyle}
-        />
-        <div className='password-wrapper'>
+        <div className='input-wrapper'>
           <input
+            id ='email_input'
+            type='email'
+            placeholder='Email'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+            style={inputStyle}
+          />
+        </div>
+        <div className='input-wrapper'>
+          <input
+            id ='password_input'
             type={showPassword ? 'text' : 'password'}
             placeholder='Password'
             value={password}
@@ -108,18 +113,17 @@ export default function Login() {
             required
             style={inputStyle}
           />
-          <svg
+          <img
+            src='/images/eyeicon.svg'
+            alt={showPassword ? 'Hide password' : 'Show password'}
             className='toggle-icon'
-            viewBox='0 0 24 24'
             onClick={() => setShowPassword(prev => !prev)}
-          >
-            <path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z' />
-            <circle cx='12' cy='12' r='3' />
-          </svg>
+          />
         </div>
         {newUser && (
-          <div className='password-wrapper'>
+          <div className='input-wrapper'>
             <input
+              id ='confirm_password_input'
               type={showConfirm ? 'text' : 'password'}
               placeholder='Confirm Password'
               value={confirmPw}
@@ -127,14 +131,12 @@ export default function Login() {
               required
               style={inputStyle}
             />
-            <svg
+            <img
+              src='/images/eyeicon.svg'
+              alt={showConfirm ? 'Hide password' : 'Show password'}
               className='toggle-icon'
-              viewBox='0 0 24 24'
               onClick={() => setShowConfirm(prev => !prev)}
-            >
-              <path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z' />
-              <circle cx='12' cy='12' r='3' />
-            </svg>
+            />
           </div>
         )}
         <button type='submit' style={buttonStyle}>
