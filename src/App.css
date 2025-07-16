@@ -2,6 +2,7 @@
   background-color: #282c34;
   color: white;
   text-align: center;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -144,6 +145,7 @@
 .type-card.active {
   background: #fff;
   border-color: #0077cc;
+  color: black;
 }
 .type-icon {
   display: block;

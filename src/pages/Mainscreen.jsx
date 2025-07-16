@@ -117,30 +117,24 @@ function MainScreen() {
     <div className="App">
       <ConsoleRow onSelectDex={setSelectedDex} />
       <TypeGrid types={types} selectedTypes={selectedTypes} onTypeClick={handleTypeClick} />
-      <DexSelector
-        options={[
-          { id: '1', name: 'National' },
-          { id: '2', name: 'Kanto' },
-          { id: '7', name: 'Johto' },
-          { id: '15', name: 'Hoenn' },
-          { id: '6', name: 'Sinnoh' },
-          { id: '9', name: 'Unova' },
-          { id: '12', name: 'Kalos' },
-          { id: '21', name: 'Alola' },
-          { id: '27', name: 'Galar' },
-          { id: '31', name: 'Paldea' }
-        ]}
-        value={selectedDex}
-        onChange={setSelectedDex}
-      />
-      <div style={{ display: 'flex', alignItems: 'center', margin: '1rem 0' }}>
-        <SearchBar
-          value={filterText}
-          onChange={setFilterText}
-          onResetFilters={handleResetFilters}
-          onResetGreyed={handleResetGreyed}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <DexSelector
+          options={[
+            { id: '1', name: 'National' },
+            { id: '2', name: 'Kanto' },
+            { id: '7', name: 'Johto' },
+            { id: '15', name: 'Hoenn' },
+            { id: '6', name: 'Sinnoh' },
+            { id: '9', name: 'Unova' },
+            { id: '12', name: 'Kalos' },
+            { id: '21', name: 'Alola' },
+            { id: '27', name: 'Galar' },
+            { id: '31', name: 'Paldea' }
+          ]}
+          value={selectedDex}
+          onChange={setSelectedDex}
         />
-        <label style={{ marginLeft: '1rem', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+        <label style={{ marginLeft: '1rem', cursor: 'pointer', display: 'flex', alignItems: 'flex-end' }}>
           <input
             type="checkbox"
             checked={monolocke}
@@ -149,6 +143,14 @@ function MainScreen() {
           />
           Toggle Monolocke
         </label>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '1rem 0' }}>
+        <SearchBar
+          value={filterText}
+          onChange={setFilterText}
+          onResetFilters={handleResetFilters}
+          onResetGreyed={handleResetGreyed}
+        />
       </div>
       <PokemonGrid
         pokemonList={filteredList}
