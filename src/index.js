@@ -11,6 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import reportWebVitals from './reportWebVitals';
 import Modeselect from './pages/Modeselect';
 import Fearlesslocke from './pages/Fearlesslocke';
+import Nuzlocke from './pages/Nuzlocke';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -34,6 +35,14 @@ root.render(
             element={
               <ProtectedRoute>
                 <Fearlesslocke />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='nuzlocke'
+            element={
+              <ProtectedRoute>
+                <Nuzlocke />
               </ProtectedRoute>
             }
           />

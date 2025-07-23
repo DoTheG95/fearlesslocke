@@ -4,16 +4,9 @@ import '../App.css';
 
 export default function Modeselect() {
 
-  const headerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '1rem'
-  };
 
   return (
-    <header className='App-header' style={headerStyle}>
+    <header className='App-header mainheader'>
       <h1 style={{ margin: 0, textAlign: 'center' }}>
         How do you want to play?
       </h1>

@@ -25,13 +25,15 @@ export default function Navigationbar() {
     }
   }
 
-  const logoLink = user ? '/mainscreen' : '/'
+  // If user is logged in send them to the mode select screen (still logged in) 
+  // Else send them to the main screen 
+  const logoLink = user ? '/modeselect' : '/mainscreen' 
 
   return (
     <nav className='nav-bar'>
       <div className='nav-left'>
         <Link to={logoLink} className='nav-home'>
-          <img src='/images/logo.png' alt='Home' className='nav-icon' />
+          <img src='/images/home.svg' alt='Home' className='nav-icon' />
         </Link>
       </div>
       <div className='nav-right'>
