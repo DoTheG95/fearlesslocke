@@ -226,3 +226,23 @@
   height: 24px;
   cursor: pointer;
 }
+
+.mainbutton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  border: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.buttoncontainer {
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  width: 50%;
+  justify-content: space-evenly;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Navigationbar from './pages/Navigationbar';
+import Navigationbar from './components/Navigationbar';
 
 function App() {
   return (

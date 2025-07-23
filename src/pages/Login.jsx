@@ -39,7 +39,7 @@ export default function Login() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      navigate('/mainscreen');
+      navigate('/modeselect');
     } catch (err) {
       setErrorMsg(err.message);
     }

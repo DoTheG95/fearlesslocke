@@ -9,7 +9,7 @@ import PokemonGrid from '../components/PokemonGrid';
 
 const API_BASE = process.env.REACT_APP_POKEMON_API_URL;
 
-function MainScreen() {
+export default function Fearlesslocke() {
   const [pokemonList, setPokemonList] = useState([]);
   const [types, setTypes] = useState([]);
   const [filterText, setFilterText] = useState('');
@@ -160,5 +160,3 @@ function MainScreen() {
     </div>
   );
 }
-
-export default MainScreen;
