@@ -1,0 +1,403 @@
+{
+  "kanto": [
+    {
+      "name": "Brock",
+      "badge": "Boulder",
+      "team": [ "geodude", "onix" ],
+      "levelcap": 14
+    },
+    {
+      "name": "Misty",
+      "badge": "Cascade",
+      "team": [ "staryu", "starmie" ],
+      "levelcap": 21
+    },
+    {
+      "name": "Lt. Surge",
+      "badge": "Thunder",
+      "team": [ "voltorb", "pikachu", "raichu" ],
+      "levelcap": 24
+    },
+    {
+      "name": "Erika",
+      "badge": "Rainbow",
+      "team": [ "victreebell", "tangela", "vileplume" ],
+      "levelcap": 29
+    },
+    {
+      "name": "Koga",
+      "badge": "Soul",
+      "team": [ "koffing", "muk", "koffing", "weezing" ],
+      "levelcap": 43
+    },
+    {
+      "name": "Sabrina",
+      "badge": "Marsh",
+      "team": [ "kadabra", "mr.mime", "venomouth", "alakazam" ],
+      "levelcap": 43
+    },
+    {
+      "name": "Blaine",
+      "badge": "Volcano",
+      "team": [ "growlithe", "ponyta", "rapidash", "arcanine" ],
+      "levelcap": 47
+    },
+    {
+      "name": "Giovanni",
+      "badge": "Earth",
+      "team": [ "rhyhorn", "dugtrio", "nidoqueen", "nidoking", "rhydon" ],
+      "levelcap": 50
+    }
+  ],
+  "johto": [
+    {
+      "name": "Falkner",
+      "badge": "Zephyr",
+      "team": ["pidgey", "pidgeotto"],
+      "levelcap": 9
+    },
+    {
+      "name": "Bugsy",
+      "badge": "Hive",
+      "team": ["ledian", "scyther"],
+      "levelcap": 14
+    },
+    {
+      "name": "Whitney",
+      "badge": "Plain",
+      "team": ["miltank"],
+      "levelcap": 18
+    },
+    {
+      "name": "Morty",
+      "badge": "Fog",
+      "team": ["gastly", "haunter", "gengar"],
+      "levelcap": 25
+    },
+    {
+      "name": "Chuck",
+      "badge": "Storm",
+      "team": ["machop", "machoke", "primeape"],
+      "levelcap": 32
+    },
+    {
+      "name": "Jasmine",
+      "badge": "Mineral",
+      "team": ["magnemite", "magneton"],
+      "levelcap": 29
+    },
+    {
+      "name": "Pryce",
+      "badge": "Glacier",
+      "team": ["seel", "dewgong"],
+      "levelcap": 42
+    },
+    {
+      "name": "Clair",
+      "badge": "Rising",
+      "team": ["dragonair", "kingdra"],
+      "levelcap": 47
+    }
+  ],
+  "hoenn": [
+    {
+      "name": "Roxanne",
+      "badge": "Stone",
+      "team": ["geodude", "nosepass"],
+      "levelcap": 12
+    },
+    {
+      "name": "Brawly",
+      "badge": "Knuckle",
+      "team": ["makuhita", "meditite"],
+      "levelcap": 18
+    },
+    {
+      "name": "Wattson",
+      "badge": "Dynamo",
+      "team": ["electrike", "manectric"],
+      "levelcap": 25
+    },
+    {
+      "name": "Flannery",
+      "badge": "Heat",
+      "team": ["numel", "slugma", "torkoal"],
+      "levelcap": 30
+    },
+    {
+      "name": "Norman",
+      "badge": "Balance",
+      "team": ["slaking", "vigoroth"],
+      "levelcap": 35
+    },
+    {
+      "name": "Winona",
+      "badge": "Feather",
+      "team": ["swellow", "skarmory"],
+      "levelcap": 38
+    },
+    {
+      "name": "Tate & Liza",
+      "badge": "Mind",
+      "team": ["lunatone", "solrock"],
+      "levelcap": 43
+    },
+    {
+      "name": "Wallace",
+      "badge": "Rain",
+      "team": ["gyarados", "whiscash", "sharpedo", "milotic"],
+      "levelcap": 47
+    }
+  ],
+  "sinnoh": [
+    {
+      "name": "Roark",
+      "badge": "Coal",
+      "team": ["geodude", "onix"],
+      "levelcap": 14
+    },
+    {
+      "name": "Gardenia",
+      "badge": "Forest",
+      "team": ["cherubi", "tangrowth", "roselia"],
+      "levelcap": 19
+    },
+    {
+      "name": "Maylene",
+      "badge": "Cobble",
+      "team": ["meditite", "machoke", "lucario"],
+      "levelcap": 23
+    },
+    {
+      "name": "Crasher Wake",
+      "badge": "Fen",
+      "team": ["quagsire", "floatzel", "gyrados"],
+      "levelcap": 27
+    },
+    {
+      "name": "Fantina",
+      "badge": "Relic",
+      "team": ["haunter", "mismagius", "drifblim"],
+      "levelcap": 30
+    },
+    {
+      "name": "Byron",
+      "badge": "Mine",
+      "team": ["steelix", "bronzor", "rapidash"],
+      "levelcap": 35
+    },
+    {
+      "name": "Candice",
+      "badge": "Icicle",
+      "team": ["snover", "beartic", "froslass"],
+      "levelcap": 41
+    },
+    {
+      "name": "Volkner",
+      "badge": "Beacon",
+      "team": ["electivire", "luxray", "raichu"],
+      "levelcap": 48
+    }
+  ],
+  "unova": [
+    {
+      "name": "Cilan",
+      "badge": "Trinity",
+      "team": ["pansage", "pansear", "panpour"],
+      "levelcap": 14
+    },
+    {
+      "name": "Lenora",
+      "badge": "Basic",
+      "team": ["patrat", "watchog"],
+      "levelcap": 18
+    },
+    {
+      "name": "Burgh",
+      "badge": "Insect",
+      "team": ["dwebble", "ledian", "whirlipede"],
+      "levelcap": 22
+    },
+    {
+      "name": "Elesa",
+      "badge": "Bolt",
+      "team": ["joltik", "emolga", "stunfisk"],
+      "levelcap": 27
+    },
+    {
+      "name": "Clay",
+      "badge": "Quake",
+      "team": ["sandile", "palpitoad", "excadrill"],
+      "levelcap": 32
+    },
+    {
+      "name": "Skyla",
+      "badge": "Jet",
+      "team": ["swanna", "swoobat", "skarmory"],
+      "levelcap": 36
+    },
+    {
+      "name": "Brycen",
+      "badge": "Icicle",
+      "team": ["cryogonal", "beartic"],
+      "levelcap": 42
+    },
+    {
+      "name": "Drayden",
+      "badge": "Legend",
+      "team": ["druddigon", "haxorus"],
+      "levelcap": 48
+    }
+  ],
+  "kalos": [
+    {
+      "name": "Viola",
+      "badge": "Bug",
+      "team": ["surskit", "vivillon"],
+      "levelcap": 12
+    },
+    {
+      "name": "Grant",
+      "badge": "Cliff",
+      "team": ["amaura", "tyrunt"],
+      "levelcap": 25
+    },
+    {
+      "name": "Korrina",
+      "badge": "Rumble",
+      "team": ["mienfoo", "machoke", "hawlucha"],
+      "levelcap": 32
+    },
+    {
+      "name": "Ramos",
+      "badge": "Plant",
+      "team": ["jumpluff", "weepinbell", "gogoat"],
+      "levelcap": 34
+    },
+    {
+      "name": "Clemont",
+      "badge": "Voltage",
+      "team": ["emolga", "magneton", "heliolisk"],
+      "levelcap": 37
+    },
+    {
+      "name": "Valerie",
+      "badge": "Fairy",
+      "team": ["mr.mime", "mawile", "sylveon"],
+      "levelcap": 42
+    },
+    {
+      "name": "Olympia",
+      "badge": "Psychic",
+      "team": ["sigilyph", "slowking", "meowstic"],
+      "levelcap": 48
+    },
+    {
+      "name": "Wulfric",
+      "badge": "Iceberg",
+      "team": ["abomasnow", "avalugg", "cryogonal"],
+      "levelcap": 59
+    }
+  ],
+  "alola": [],
+  "galar": [
+    {
+      "name": "Milo",
+      "badge": "Grass",
+      "team": ["gossifleur", "eldegoss"],
+      "levelcap": 20
+    },
+    {
+      "name": "Nessa",
+      "badge": "Water",
+      "team": ["goldeen", "arrokuda", "drednaw"],
+      "levelcap": 24
+    },
+    {
+      "name": "Kabu",
+      "badge": "Fire",
+      "team": ["ninetales", "arcanine", "centiskorch"],
+      "levelcap": 27
+    },
+    {
+      "name": "Bea",
+      "badge": "Martial",
+      "team": ["hitmontop", "pangoro", "sirfetchd", "machamp"],
+      "levelcap": 36
+    },
+    {
+      "name": "Opal",
+      "badge": "Fairy",
+      "team": ["weezing", "mawile", "togekiss", "alcremie"],
+      "levelcap": 38
+    },
+    {
+      "name": "Gordie",
+      "badge": "Rock",
+      "team": ["barbaracle", "shuckle", "stonjourner", "coalossal"],
+      "levelcap": 42
+    },
+    {
+      "name": "Piers",
+      "badge": "Dark",
+      "team": ["skorupi", "obstagoon"],
+      "levelcap": 48
+    },
+    {
+      "name": "Raihan",
+      "badge": "Dragon",
+      "team": ["axew", "druddigon", "flygon", "falinks", "duraludon"],
+      "levelcap": 60
+    }
+  ],
+  "paldea": [
+    {
+      "name": "Katy",
+      "badge": "Bug",
+      "team": ["nymble", "tarountula", "teddiursa"],
+      "levelcap": 15
+    },
+    {
+      "name": "Brassius",
+      "badge": "Grass",
+      "team": ["petilil", "smoliv", "sudowoodo"],
+      "levelcap": 17
+    },
+    {
+      "name": "Iono",
+      "badge": "Voltage",
+      "team": ["wattrel", "bellibolt", "luxio", "mismagius"],
+      "levelcap": 24
+    },
+    {
+      "name": "Kofu",
+      "badge": "Water",
+      "team": ["veluza", "wugtrio", "crabominable"],
+      "levelcap": 30
+    },
+    {
+      "name": "Larry",
+      "badge": "Normal",
+      "team": ["komala", "dudunsparce", "staraptor"],
+      "levelcap": 36
+    },
+    {
+      "name": "Ryme",
+      "badge": "Ghost",
+      "team": ["banette", "mimikyu", "houndstone", "toxtricity"],
+      "levelcap": 42
+    },
+    {
+      "name": "Tulip",
+      "badge": "Psychic",
+      "team": ["farigiraf", "gardevoir", "espathra", "florges"],
+      "levelcap": 45
+    },
+    {
+      "name": "Grusha",
+      "badge": "Ice",
+      "team": ["frosmoth", "beartic", "cetitan", "altaria"],
+      "levelcap": 48
+    }
+  ]
+}

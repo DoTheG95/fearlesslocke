@@ -11,25 +11,23 @@ const consoles = [
   { name: 'Switch', key: 'switch', iconSrc: '/images/consoles/nintendo-switch.png' }
 ];
 
-export default function ConsoleRow({ onSelectDex }) {
+export default function ConsoleRow({ onGameSelect }) {
   const [openConsole, setOpenConsole] = useState(null);
 
   return (
-    <div className="icon-row">
-      {consoles.map(c => (
-        <div key={c.key} className="icon-container">
+    <div className='icon-row'>
+      {consoles.map(c=>(
+        <div key={c.key} className='icon-container'>
           <img
             src={c.iconSrc}
             alt={c.name}
-            className="icon"
-            onClick={() =>
-              setOpenConsole(openConsole === c.key ? null : c.key)
-            }
+            className='icon'
+            onClick={ () => setOpenConsole( openConsole === c.key ? null : c.key ) }
           />
           {openConsole === c.key && (
             <GameIconsPopup
-              consoleKey={c.key}
-              onGameClick={onSelectDex}
+              consoleKey={ c.key }
+              onGameClick={ g => onGameSelect(g) }
             />
           )}
         </div>

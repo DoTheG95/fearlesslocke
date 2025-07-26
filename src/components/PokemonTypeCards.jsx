@@ -6,9 +6,9 @@ export default function TypeCard({ name, icon, onClick, active }) {
   const displayName = name.charAt(0).toUpperCase() + name.slice(1);
   return (
     <div
-      className={`type-card${active ? ' active' : ''}`}
-      onClick={onClick}               // attach the click handler
-      style={{ cursor: 'pointer' }}   // show it’s clickable
+      className={`type-card ${ active ? ' active' : '' }`}
+      onClick={onClick} 
+      style={{ cursor: 'pointer' }} 
     >
       <img src={icon} alt={displayName} className="type-icon" />
       <p className="type-name">{displayName}</p>

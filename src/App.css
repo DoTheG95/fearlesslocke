@@ -254,3 +254,64 @@
   width: 50%;
   justify-content: space-evenly;
 }
+
+.teambuilder-header {
+  display: flex;
+  padding: 1em;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.teambuilder-monolocke {
+}
+
+.teambuilder-currentgame {
+  display: flex;
+  align-items: center;
+}
+
+.teambuilder-title {
+  font-size: 1.5em;
+  text-align: left;
+  padding: 0.5em;
+}
+
+.teambuilder-header-icon {
+  padding-right: 1em;
+  width: 40px;
+}
+
+.teambuilder-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.teambuilder-current-team {
+  display: flex;
+  flex-direction: column;
+  padding: 3em;
+}
+
+.teambuilder-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows:    repeat(4, auto);
+  gap:                  0.5rem;
+  margin-top:           0.5rem;
+}
+
+.leader-card {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.leader-card.selected {
+  background-color: #eef;
+  color: black;
+  border-color: #88f;
+}
