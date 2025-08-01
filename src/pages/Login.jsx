@@ -39,7 +39,7 @@ export default function Login() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      navigate('/modeselect');
+      navigate('/nuzlocke');
     } catch (err) {
       setErrorMsg(err.message);
     }

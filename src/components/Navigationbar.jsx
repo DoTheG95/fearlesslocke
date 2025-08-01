@@ -27,7 +27,7 @@ export default function Navigationbar() {
 
   // If user is logged in send them to the mode select screen (still logged in) 
   // Else send them to the main screen 
-  const logoLink = user ? '/modeselect' : '/mainscreen' 
+  const logoLink = user ? '/nuzlocke' : '/mainscreen' 
 
   return (
     <nav className='nav-bar'>
