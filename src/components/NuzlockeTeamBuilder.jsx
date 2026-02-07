@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import gymLeaderData from "../data/gymleaderdata.json"
 import TypeGrid from "./TypeGrid"
 import { fetchAllTypes } from "./FetchPokemon"
+import Teamdisplay from "./Teamdisplay"
 
 
 export default function NuzlockeTeamBuilder({ teamBuildFor }) {
@@ -40,7 +41,7 @@ export default function NuzlockeTeamBuilder({ teamBuildFor }) {
             </div>
             <div className="teambuilder-row">
                 <div>
-                    Team list
+                    <Teamdisplay />
                 </div>
                 <div>
                     Add
