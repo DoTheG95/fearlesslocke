@@ -39,7 +39,7 @@ export default function Login() {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
       }
-      navigate('/nuzlocke');
+      navigate('/fearlesslocke');
     } catch (err) {
       setErrorMsg(err.message);
     }
