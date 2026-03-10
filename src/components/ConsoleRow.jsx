@@ -15,6 +15,7 @@ export default function ConsoleRow({ onGameSelect }) {
   const [openConsole, setOpenConsole] = useState(null);
 
   return (
+    
     <div className='icon-row'>
       {consoles.map(c=>(
         <div key={c.key} className='icon-container'>
